@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title >H Healthy: Weight Gain Tracker</title>
+  <style>
+    body  
+{
+      font-family: Arial, sans-serif;
+      background: #c8daff;
+      padding: 20px;
+    }
+
+   
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #f9f9f9;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .total {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body >
+<P> 
+
+ 
+ 
+    <h1 style="color:blue;">H Healthy: Weight Gain Tracker</h1>
+    <input type="text" id="foodInput" placeholder="Enter food (e.g. banana)">
+    <input type="number" id="quantityInput" placeholder="Enter quantity" value="1" min="1">
+    <button onclick="addFood()">Add Food</button><ul id="foodList"></ul>
+<p class="total" id="totalCalories">Total Calories: 0 kcal</p>
+
+  </div>  <script>
+    const foodDatabase = {
+      banana: 105,
+      egg: 70,
+      chapati: 100,
+      rice: 130,
+      wheat: 340,
+      meat: 250
+    };
+
+    let totalCalories = 0;
+
+    function addFood() {
+      const foodInput = document.getElementById("foodInput");
+      const quantityInput = document.getElementById("quantityInput");
+      const foodList = document.getElementById("foodList");
+      const totalCaloriesEl = document.getElementById("totalCalories");
+
+      const food = foodInput.value.toLowerCase();
+      const quantity = parseInt(quantityInput.value);
+
+      if (foodDatabase[food] && quantity > 0) {
+        const calories = foodDatabase[food] * quantity;
+        totalCalories += calories;
+
+        const li = document.createElement("li");
+        li.textContent = `${quantity} x ${food} → ${calories} kcal`;
+        foodList.appendChild(li);
+
+        totalCaloriesEl.textContent = `Total Calories: ${totalCalories} kcal`;
+      }
+
+      foodInput.value = "";
+      quantityInput.value = 1;
+    }
+  </script></body>
+</html>
